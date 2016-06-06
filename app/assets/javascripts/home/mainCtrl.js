@@ -8,10 +8,12 @@ function($scope, posts){
 
 	$scope.addPost = function() {
 		if(!$scope.title || $scope.title === '') {return;}
+
 		posts.create({
 			title: $scope.title, 
-			link: $scope.link,
+			link: $scope.link
 		});
+		
 		$scope.title = '';
 		$scope.link = '';
 	}
