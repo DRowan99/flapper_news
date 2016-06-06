@@ -13,12 +13,12 @@ function($scope, posts){
 			title: $scope.title, 
 			link: $scope.link
 		});
-		
+
 		$scope.title = '';
 		$scope.link = '';
 	}
 
 	$scope.incrementUpvotes = function(post) {
-		post.upvotes += 1;
+		posts.upvote(post);
 	}
 }]);
