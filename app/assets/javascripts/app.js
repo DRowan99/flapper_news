@@ -1,9 +1,19 @@
 var app = angular.module('flapperNews', ['ui.router', 'templates']);
 
+app.factory('httpRequestInterceptor', function() {
+	return {
+		request: function(config) {
+			config.headers['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').content;
+			return config;
+		}
+	};
+});
+
 app.config([
 '$stateProvider',
 '$urlRouterProvider',
-function($stateProvider, $urlRouterProvider){
+'$httpProvider',
+function($stateProvider, $urlRouterProvider, $httpProvider){
 
 	$stateProvider
 		.state('home', {
@@ -22,6 +32,9 @@ function($stateProvider, $urlRouterProvider){
 			controller: 'PostsCtrl'
 		});
 
-	$urlRouterProvider.otherwise('/home')
+	$urlRouterProvider.otherwise('/home');
 
+	$httpProvider.interceptors.push('httpRequestInterceptor');
 }]);
+
+
