@@ -7,15 +7,17 @@ function($scope, posts, post) {
 
 	$scope.addComment = function() {
 		if(!$scope.body || $scope.body === '') {return;}
-		$scope.post.comments.push({
+
+		posts.addComment(post, {
 			body: $scope.body,
-			author: 'user',
-			upvotes: 0
+			author: 'user'
+		}).success(function(comment){
+			$scope.post.comments.push(comment);
 		});
 		$scope.body = '';
 	}
 
 	$scope.incrementUpvotes = function(comment) {
-		comment.upvotes += 1;
+		posts.upvoteComment(post, comment);
 	}
 }]);
