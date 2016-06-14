@@ -3,8 +3,7 @@ var app = angular.module('flapperNews', ['ui.router', 'templates', 'Devise']);
 app.config([
 '$stateProvider',
 '$urlRouterProvider',
-'$httpProvider',
-function($stateProvider, $urlRouterProvider, $httpProvider){
+function($stateProvider, $urlRouterProvider){
 
 	$stateProvider
 		.state('home', {
